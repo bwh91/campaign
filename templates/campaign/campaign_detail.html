@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block head %}
+  {{ campaign.head.content|safe }}
+{% endblock %}
+
+{% block header %}
   {{ campaign.header.content|safe }}
 {% endblock %}
 

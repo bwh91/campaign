@@ -30,11 +30,19 @@ class Hero(models.Model):
     def __str__(self):
         return self.title
 
+class Header(models.Model):
+    title = models.CharField(max_length=50)
+    content = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
 
 class Campaign(models.Model):
     title = models.CharField(max_length=50)
     body = models.TextField(blank=True, null=True)
     head = models.ForeignKey(Head, blank=True, null=True)
+    header = models.ForeignKey(Header, blank=True, null=True)
     hero = models.ForeignKey(Hero, blank=True, null=True)
     footer = models.ForeignKey(Footer, blank=True, null=True)
     sidebar = models.ForeignKey(Sidebar, blank=True, null=True)
