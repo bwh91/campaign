@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 
+{% block head %}
+  {{ campaign.header.content|safe }}
+{% endblock %}
+
+{% block hero %}
+  {{ campaign.hero.content|safe }}
+{% endblock %}
+
 {% block content %}
-{{ campaign.header.content }}
-{{ campaign.footer.content }}
-{{ campaign.sidebar.content }}
-{{ campaign.title }}
-{{ campaign.body }}
+  {{ campaign.body|safe }}
+{% endblock %}
+
+{% block sidebar %}
+  {{ campaign.sidebar.content|safe }}
+{% endblock %}
+
+{% block footer %}
+  {{ campaign.footer.content|safe }}
 {% endblock %}
