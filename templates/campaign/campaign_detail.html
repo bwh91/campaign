@@ -1,4 +1,7 @@
-{% extends 'base.html' %}
+{% with campaign.template|add:"_base.html" as t %}
+{% include t %}
+{% endwith %}
+
 
 {% block head %}
   {{ campaign.head.content|safe }}

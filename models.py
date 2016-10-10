@@ -3,6 +3,17 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from ckeditor.fields import RichTextField
 
+BASE = "generic"
+TWO_COLUMN = "two_column"
+THREE_COLUMN = "three_column"
+HERO = "hero"
+TEMPLATE_CHOICES = (
+    (BASE, "generic"),
+    (TWO_COLUMN, "two column"),
+    (THREE_COLUMN, "three column"),
+    (HERO, "hero"),
+)
+
 class Head(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(blank=True, null=True)
@@ -41,6 +52,11 @@ class Header(models.Model):
 
 class Campaign(models.Model):
     title = models.CharField(max_length=50)
+    template = models.CharField(max_length=20,
+                  choices=TEMPLATE_CHOICES,
+                  default=BASE,
+                  blank=True,
+                  null=True)
     body = models.TextField(blank=True, null=True)
     head = models.ForeignKey(Head, blank=True, null=True)
     header = models.ForeignKey(Header, blank=True, null=True)
