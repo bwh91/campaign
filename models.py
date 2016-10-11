@@ -3,17 +3,6 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from ckeditor.fields import RichTextField
 
-BASE = "generic"
-TWO_COLUMN = "two_column"
-THREE_COLUMN = "three_column"
-HERO = "hero"
-TEMPLATE_CHOICES = (
-    (BASE, "generic"),
-    (TWO_COLUMN, "two column"),
-    (THREE_COLUMN, "three column"),
-    (HERO, "hero"),
-)
-
 class Head(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(blank=True, null=True)
@@ -28,12 +17,6 @@ class Footer(models.Model):
     def __str__(self):
         return self.title
 
-class Sidebar(models.Model):
-    title = models.CharField(max_length=50)
-    content = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.title
 
 class Hero(models.Model):
     title = models.CharField(max_length=50)
@@ -52,17 +35,11 @@ class Header(models.Model):
 
 class Campaign(models.Model):
     title = models.CharField(max_length=50)
-    template = models.CharField(max_length=20,
-                  choices=TEMPLATE_CHOICES,
-                  default=BASE,
-                  blank=True,
-                  null=True)
     body = models.TextField(blank=True, null=True)
     head = models.ForeignKey(Head, blank=True, null=True)
     header = models.ForeignKey(Header, blank=True, null=True)
     hero = models.ForeignKey(Hero, blank=True, null=True)
     footer = models.ForeignKey(Footer, blank=True, null=True)
-    sidebar = models.ForeignKey(Sidebar, blank=True, null=True)
     slug = models.SlugField(default='', blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)

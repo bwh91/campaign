@@ -1,7 +1,4 @@
-{% with campaign.template|add:"_base.html" as t %}
-{% include t %}
-{% endwith %}
-
+{% extends 'base.html' %}
 
 {% block head %}
   {{ campaign.head.content|safe }}
@@ -19,9 +16,6 @@
   {{ campaign.body|safe }}
 {% endblock %}
 
-{% block sidebar %}
-  {{ campaign.sidebar.content|safe }}
-{% endblock %}
 
 {% block footer %}
   {{ campaign.footer.content|safe }}
